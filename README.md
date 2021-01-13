@@ -7,7 +7,7 @@ Saves local with configured content
 You can now consume the action by referencing the v1 branch
 
 ```yaml
-uses: actions/create-file-action@v2
+uses: petr-pokorny-1/create-file-action@v4
 with:
   filePath: GoogleService-Info.plist
   content: ${{ secrets.GOOGLE_SERVICE_INFO }}
