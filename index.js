@@ -1,5 +1,6 @@
 const core = require('@actions/core');
-const fs = require('fs').promises;
+const saveFile = require('./saveFile');
+const processContent = require('./processContent');
 
 // most @actions toolkit packages have async methods
 async function run() {
@@ -10,11 +11,10 @@ async function run() {
 
     let content = core.getInput('content');
     core.info(`doubleQuotesToSingle: ${doubleQuotesToSingle}`);
-    if (doubleQuotesToSingle) {
-      content = content.replaceAll('\"\"', '\"');
-    }
     
-    await fs.writeFile(filePath, content, 'utf8');
+    content = await processContent(content, doubleQuotesToSingle);
+
+    await saveFile(filePath, content);
 
   } catch (error) {
     core.setFailed(error.message);

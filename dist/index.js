@@ -6,7 +6,8 @@ require('./sourcemap-register.js');module.exports =
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 const core = __webpack_require__(186);
-const fs = __webpack_require__(747).promises;
+const saveFile = __webpack_require__(465);
+const processContent = __webpack_require__(649);
 
 // most @actions toolkit packages have async methods
 async function run() {
@@ -17,11 +18,10 @@ async function run() {
 
     let content = core.getInput('content');
     core.info(`doubleQuotesToSingle: ${doubleQuotesToSingle}`);
-    if (doubleQuotesToSingle) {
-      content = content.replaceAll('\"\"', '\"');
-    }
     
-    await fs.writeFile(filePath, content, 'utf8');
+    content = await processContent(content, doubleQuotesToSingle);
+
+    await saveFile(filePath, content);
 
   } catch (error) {
     core.setFailed(error.message);
@@ -423,6 +423,35 @@ function toCommandValue(input) {
 }
 exports.toCommandValue = toCommandValue;
 //# sourceMappingURL=utils.js.map
+
+/***/ }),
+
+/***/ 649:
+/***/ ((module) => {
+
+let processContent = function (content, doubleQuotesToSingle) {
+    return new Promise((resolve) => {
+        if (doubleQuotesToSingle) {
+            content = content.replace(/\"\"/g, '\"');
+        }
+        resolve(content);
+    });
+  };
+  
+module.exports = processContent;
+
+/***/ }),
+
+/***/ 465:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const fs = __webpack_require__(747).promises;
+
+let saveFile = async function (filePath, content) {
+    await fs.writeFile(filePath, content, 'utf8');
+};
+
+module.exports = saveFile;
 
 /***/ }),
 
