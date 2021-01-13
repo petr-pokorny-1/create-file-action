@@ -11,7 +11,7 @@ async function run() {
     let content = core.getInput('content');
     core.info(`doubleQuotesToSingle: ${doubleQuotesToSingle}`);
     if (doubleQuotesToSingle) {
-      content = content.replace('\"\"', '\"');
+      content = content.replaceAll('\"\"', '\"');
     }
     
     await fs.writeFile(filePath, content, 'utf8');
