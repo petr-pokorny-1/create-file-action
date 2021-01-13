@@ -1,13 +1,12 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
+name: 'SaveFile'
+description: 'Save file with configured content'
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
+  filePath:  
+    description: 'The file path where to save file'
     required: true
-    default: '1000'
-outputs:
-  time: # output will be available to future steps
-    description: 'The message to output'
+  content:  
+    description: 'The content'
+    required: true    
 runs:
   using: 'node12'
   main: 'dist/index.js'
