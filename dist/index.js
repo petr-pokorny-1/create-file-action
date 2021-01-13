@@ -6,14 +6,14 @@ require('./sourcemap-register.js');module.exports =
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 const core = __webpack_require__(186);
-const wait = __webpack_require__(258);
+const wait = __webpack_require__(653);
 const fs = __webpack_require__(747).promises;
 
 // most @actions toolkit packages have async methods
 async function run() {
   try {
     const filePath = core.getInput('filePath');
-    core.info(`Saving file to ${ms} filePath ...`);
+    core.info(`Saving content to filePath ...`);
 
     const content = core.getInput('content');
     await fs.writeFile(filePath, content, 'utf8');
@@ -421,19 +421,10 @@ exports.toCommandValue = toCommandValue;
 
 /***/ }),
 
-/***/ 258:
+/***/ 653:
 /***/ ((module) => {
 
-let wait = function (milliseconds) {
-  return new Promise((resolve) => {
-    if (typeof milliseconds !== 'number') {
-      throw new Error('milliseconds not a number');
-    }
-    setTimeout(() => resolve("done!"), milliseconds)
-  });
-};
-
-module.exports = wait;
+module.exports = eval("require")("./wait");
 
 
 /***/ }),
