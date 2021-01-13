@@ -1,18 +1,16 @@
 const core = require('@actions/core');
 const wait = require('./wait');
-
+const fs = require('fs').promises;
 
 // most @actions toolkit packages have async methods
 async function run() {
   try {
-    const ms = core.getInput('milliseconds');
-    core.info(`Waiting ${ms} milliseconds ...`);
+    const filePath = core.getInput('filePath');
+    core.info(`Saving file to ${ms} filePath ...`);
 
-    core.debug((new Date()).toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-    await wait(parseInt(ms));
-    core.info((new Date()).toTimeString());
+    const content = core.getInput('content');
+    await fs.writeFile(filePath, content, 'utf8');
 
-    core.setOutput('time', new Date().toTimeString());
   } catch (error) {
     core.setFailed(error.message);
   }
