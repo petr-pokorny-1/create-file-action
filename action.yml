@@ -9,6 +9,10 @@ inputs:
   content:  
     description: 'The content'
     required: true    
+  doubleQuotesToSingle:
+    description: 'If true, the action replaces "" to " in the content string'    
+    required: false
+    default: 'false'
 runs:
   using: 'node12'
   main: 'dist/index.js'
