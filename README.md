@@ -38,10 +38,10 @@ git add dist
 Users shouldn't consume the action from master since that would be latest code and actions can break compatibility between major versions.
 
 ```bash
-git checkout -b v2
-git commit -a -m "v2 release"
+git checkout -b v3
+git commit -a -m "v3 release"
 ```
 
 ```bash
-git push origin v2
+git push origin v3
 ```

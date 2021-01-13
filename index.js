@@ -6,7 +6,7 @@ const fs = require('fs').promises;
 async function run() {
   try {
     const filePath = core.getInput('filePath');
-    core.info(`Saving file to ${ms} filePath ...`);
+    core.info(`Saving content to filePath ...`);
 
     const content = core.getInput('content');
     await fs.writeFile(filePath, content, 'utf8');
