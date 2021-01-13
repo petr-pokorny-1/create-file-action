@@ -1,5 +1,7 @@
-name: 'SaveFile'
-description: 'Save file with configured content'
+name: Local File Creation
+description: 'Saves local with configured content'
+author: Petr Pokorny
+
 inputs:
   filePath:  
     description: 'The file path where to save file'
