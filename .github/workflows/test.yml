@@ -23,6 +23,7 @@ jobs:
     - uses: ./
       with:
         filePath: TestFile.txt
+        doubleQuotesToSingle: true
         content: |
-          hello world
+          ""hello world""
           hello world

@@ -12,9 +12,15 @@ const fs = __webpack_require__(747).promises;
 async function run() {
   try {
     const filePath = core.getInput('filePath');
-    core.info(`Saving content to filePath ...`);
+    core.info(`Saving content to filePath ${filePath} ...`);
+    const doubleQuotesToSingle = core.getInput('doubleQuotesToSingle');
 
     const content = core.getInput('content');
+    core.info(`doubleQuotesToSingle: ${doubleQuotesToSingle}`);
+    if (doubleQuotesToSingle) {
+      content = content.replace('\"\"', '\"');
+    }
+    
     await fs.writeFile(filePath, content, 'utf8');
 
   } catch (error) {
