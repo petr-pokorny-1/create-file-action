@@ -15,7 +15,7 @@ async function run() {
     core.info(`Saving content to filePath ${filePath} ...`);
     const doubleQuotesToSingle = core.getInput('doubleQuotesToSingle');
 
-    const content = core.getInput('content');
+    let content = core.getInput('content');
     core.info(`doubleQuotesToSingle: ${doubleQuotesToSingle}`);
     if (doubleQuotesToSingle) {
       content = content.replace('\"\"', '\"');
